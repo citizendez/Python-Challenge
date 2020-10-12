@@ -14,7 +14,7 @@ csvpath = os.path.join('Resources', 'budget_data.csv')
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',')
 
-
+#Variables
     csv_header = next(csvreader)
     counter = 0
     total_PL = 0
@@ -26,15 +26,15 @@ with open(csvpath) as csvfile:
     low_date = ''
     total_diff = 0
     
-    
+#Loops for reading cells    
     for row in csvreader:
         counter = counter + 1 #row counter of months
         profit_loss = float(row[1])
-        total_PL = total_PL + profit_loss 
+        total_PL = total_PL + profit_loss #total profit/loss
     #print(total_PL)
     #print(counter)
     
-#The greatest increase in profits (date and amount) over the entire period
+    #The greatest increase in profits (date and amount) over the entire period
         diff = profit_loss - prev 
         prev = profit_loss
         if diff > max_diff:
@@ -43,22 +43,22 @@ with open(csvpath) as csvfile:
     #print(max_diff)
     #print(max_date)
     
-#The greatest decrease in losses (date and amount) over the entire period
+    #The greatest decrease in losses (date and amount) over the entire period
         if diff < low_diff:
             low_diff = diff
             low_date = row[0]
             
-#The average of the changes in "Profit/Losses" over the entire period
+            #The average of the changes in "Profit/Losses" over the entire period
         if counter > 1:   #The average of the changes in "Profit/Losses" over the entire period
             total_diff += diff
     #print(low_diff)
     #print(low_date)
 
-#output for text file
+    #output for text file
     average_diff = round(total_diff/(counter - 1), 2)
     #print(average_diff)
 
-
+    #string variables
     header = 'Financial Analysis\n'
     divider = '----------------------------\n'
     total = 'Total: $%.0f \n'%total_PL
