@@ -15,8 +15,10 @@ csvoutput = os.path.join ('Analysis', 'FinancialAnalysis.txt')
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',')
 
-#Variables
+
     csv_header = next(csvreader)
+    
+ #Variables
     counter = 0
     total_PL = 0
     max_date = ''
@@ -52,18 +54,16 @@ with open(csvpath) as csvfile:
     #The average of the changes in "Profit/Losses" over the entire period
     average_diff = round(total_diff/(counter - 1), 2)
 
- #output for text file
-    #string variables
-    header = 'Financial Analysis\n'
-    divider = '----------------------------\n'
-    total = 'Total: $%.0f \n'%total_PL
-    ttlMonths = f'Total Months: {counter}\n'
-    avgChange = f'Average Change: ${average_diff}\n'
-    grtIncrease = f'Greatest Increase in Profits: {max_date} $%.0f \n'%max_diff
-    grtDecrease = f'Greatest Decrease in Profits: {low_date} $%.0f \n'%low_diff
-  
-    Output = header + divider + ttlMonths + total + avgChange + grtIncrease + grtDecrease
-    print(Output)
+ #output for text file    
+    Output = (f'Financial Analysis\n'
+               f'----------------------------\n'
+               f'Total: {total_PL:.0f}\n'
+               f'Total Months: {counter}\n'
+               f'Average Change: {average_diff:.0f}\n'
+               f'Greatest Increase in Profits: {max_date} {max_diff:.0f}\n'
+               f'Greatest Decrease in Profits: {low_date} {low_diff:.0f}'
+               )
     
+    print(Output)
 with open(csvoutput, "w") as txt_file:
     txt_file.write(Output)
