@@ -59,7 +59,7 @@ with open(csvpath) as csvfile:
                f'----------------------------\n'
                f'Total: {total_PL:.0f}\n'
                f'Total Months: {counter}\n'
-               f'Average Change: {average_diff:.0f}\n'
+               f'Average Change: {average_diff}\n'
                f'Greatest Increase in Profits: {max_date} {max_diff:.0f}\n'
                f'Greatest Decrease in Profits: {low_date} {low_diff:.0f}'
                )
@@ -67,3 +67,4 @@ with open(csvpath) as csvfile:
     print(Output)
 with open(csvoutput, "w") as txt_file:
     txt_file.write(Output)
+    
